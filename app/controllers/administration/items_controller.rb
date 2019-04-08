@@ -10,6 +10,5 @@ module Administration
     def update
       redirect_to administration_items_path
     end
-
   end
 end
