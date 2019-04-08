@@ -13,7 +13,18 @@
 #
 
 class Item < ApplicationRecord
-  def price
-    80.00
-  end
+	def price
+		has_discount ? original_price - (original_price * discount_percentage / 100)  : original_price
+	end
+
+	def self.average_price
+		items = Item.all
+		stock_value = 0
+		stock_items = 0
+		items.each do |item|
+			stock_value += item.price
+			stock_items += 1
+		end
+		stock_value / stock_items.to_f
+	end
 end
