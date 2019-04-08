@@ -13,6 +13,12 @@
 #
 
 class Item < ApplicationRecord
+  validates :discount_percentage, inclusion: { in: 0..100 }
+  validates :discount_percentage, numericality: true
+
+  validates :original_price, :has_discount, presence: { message: "Original price must be present" }
+  validates_numericality_of :original_price, :greater_than => 0.0
+
   def price
     has_discount ? original_price - (original_price * discount_percentage / 100) : original_price
   end
@@ -23,6 +29,6 @@ class Item < ApplicationRecord
     items.each do |item|
       stock_value += item.price
     end
-    (stock_value / items.count).to_f
+    (stock_value / items.count).to_f if items.count > 0
   end
 end
