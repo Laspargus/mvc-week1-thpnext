@@ -1,6 +1,21 @@
 <nav class="sidebar sidebar-sticky">
 	<div class="sidebar-content">
 
+<%if user_signed_in? %>
+<%= link_to 'Sign Out Dear User', destroy_user_session_path, method: :delete, class:"nav-link ml-3" %>
+<%else%>
+ <%= link_to '<i class="fas fa-sign-in-alt"></i>  Sign In as User '.html_safe, new_user_session_path, class:"nav-link ml-3" %>
+<%end%>
+
+<%if admin_signed_in? %>
+<%= link_to 'Sign Out Dear Admin', destroy_admin_session_path, method: :delete, class:"nav-link ml-3" %>
+<%else%>
+<%= link_to '<i class="fas fa-sign-in-alt"></i>  Sign In as Admin'.html_safe, new_admin_session_path, class:"nav-link ml-3" %>
+<%end%>
+
+
+
+
 		<%= link_to root_path, class: "sidebar-brand" do %>
       <p class="align-middle text-center">
 	      <%= image_tag "logo.svg", size: "75x75", class: "rounded rounded-circle", alt: "logo" %>
