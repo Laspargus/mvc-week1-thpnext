@@ -23,10 +23,10 @@
 #  index_admins_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-FactoryBot.define do
-  factory :admin do
-  end
-end
+# FactoryBot.define do
+# factory :admin do
+# end
+# end
 
 # If your model is called User, then use :user instead of :account below:
 

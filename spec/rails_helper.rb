@@ -73,6 +73,8 @@ end
 
 require 'devise'
 
+require_relative 'support/controller_macros'
+
 RSpec.configure do |config|
   # For Devise > 4.1.1
   config.include Devise::Test::ControllerHelpers, type: :controller
