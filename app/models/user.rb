@@ -34,7 +34,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
 
   def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+    devise_mailer.send(notification, self, *args).deliver_now
   end
 
   def self.emails_of_all_users
