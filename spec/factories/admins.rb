@@ -27,3 +27,14 @@ FactoryBot.define do
   factory :admin do
   end
 end
+
+# If your model is called User, then use :user instead of :account below:
+
+FactoryBot.define do
+  factory :admin do
+    email { Faker::Internet.email }
+    password { "password" }
+    password_confirmation { "password" }
+    confirmed_at { Time.zone.today }
+  end
+end
