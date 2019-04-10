@@ -21,7 +21,7 @@ module Administration
     end
 
     def notify_user(user)
-      ProfileMailer.notify_user(user).deliver_now
+      ProfileMailer.notify_user(user).deliver_later
     end
   end
 end
