@@ -29,6 +29,10 @@ class Item < ApplicationRecord
     items.each do |item|
       stock_value += item.price
     end
-    (stock_value / items.count).to_f(2) if items.count.positive?
+    (stock_value / items.count) if items.count.positive?
+  end
+
+  def self.average_price_refacto
+    (where(has_discount: true).sum('original_price - (original_price * discount_percentage/100)') + where(has_discount: false).sum(:original_price)) / count
   end
 end

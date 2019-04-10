@@ -2,19 +2,26 @@
 
 module Administration
   class ProfilesController < ApplicationController
-    before_action :set_profile
-
     def show; end
 
     def send_email
-      @profile.send_email
+      @user = User.find(params[:id])
+      notify_user(@user)
       redirect_back fallback_location: root_path
+    end
+
+    def index
+      @user = User.all
     end
 
     private
 
     def set_profile
       @profile = Profile.find(params[:id])
+    end
+
+    def notify_user(user)
+      ProfileMailer.notify_user(user).deliver_later
     end
   end
 end
